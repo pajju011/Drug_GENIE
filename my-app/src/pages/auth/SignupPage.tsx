@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Heart, Eye, EyeOff, Mail, Lock, User, Calendar, Droplets, ArrowRight, CheckCircle, Check, X } from 'lucide-react';
+import { HeartHandshake, Eye, EyeOff, Mail, Lock, User, Calendar, Droplets, ArrowRight, CheckCircle, Check, X } from 'lucide-react';
 import { registerUser } from '../../utils/storage';
 import toast from 'react-hot-toast';
 
@@ -185,7 +185,7 @@ const SignupPage: React.FC = () => {
           >
             <div className="flex items-center space-x-3 mb-8">
               <div className="p-3 bg-white/20 backdrop-blur-sm rounded-2xl">
-                <Heart className="h-8 w-8 text-white" />
+                <HeartHandshake className="h-8 w-8 text-white" />
               </div>
               <h1 className="text-3xl font-bold">Drug GENIE</h1>
             </div>
@@ -239,7 +239,7 @@ const SignupPage: React.FC = () => {
           <div className="lg:hidden text-center mb-8">
             <div className="inline-flex items-center space-x-3">
               <div className="p-3 bg-cyan-500 rounded-2xl">
-                <Heart className="h-8 w-8 text-white" />
+                <HeartHandshake className="h-8 w-8 text-white" />
               </div>
               <h1 className="text-2xl font-bold text-gray-900">Drug GENIE</h1>
             </div>

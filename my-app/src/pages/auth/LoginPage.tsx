@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import {
-  Heart,
+  HeartHandshake,
   Eye,
   EyeOff,
   Mail,
@@ -75,7 +75,7 @@ const LoginPage: React.FC = () => {
           >
             <div className="flex items-center space-x-3 mb-8">
               <div className="p-3 bg-white/20 backdrop-blur-sm rounded-2xl">
-                <Heart className="h-8 w-8 text-white" />
+                <HeartHandshake className="h-8 w-8 text-white" />
               </div>
               <h1 className="text-3xl font-bold">Drug GENIE</h1>
             </div>
@@ -133,7 +133,7 @@ const LoginPage: React.FC = () => {
           <div className="lg:hidden text-center mb-8">
             <div className="inline-flex items-center space-x-3">
               <div className="p-3 bg-blue-500 rounded-2xl">
-                <Heart className="h-8 w-8 text-white" />
+                <HeartHandshake className="h-8 w-8 text-white" />
               </div>
               <h1 className="text-2xl font-bold text-gray-900">Drug GENIE</h1>
             </div>

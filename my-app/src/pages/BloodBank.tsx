@@ -432,29 +432,29 @@ const BloodBank: React.FC = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-blue-50 border border-blue-200 rounded-lg p-6"
+        className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6 transition-colors duration-200"
       >
-        <h3 className="text-lg font-semibold text-blue-900 mb-4">Blood Donation Compatibility Guide</h3>
+        <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-4">Blood Donation Compatibility Guide</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
           <div>
-            <h4 className="font-medium text-blue-800 mb-2">Universal Donors</h4>
-            <p className="text-blue-700">O- can donate to anyone</p>
-            <p className="text-blue-700">O+ can donate to all positive types</p>
+            <h4 className="font-medium text-blue-800 dark:text-blue-300 mb-2">Universal Donors</h4>
+            <p className="text-blue-700 dark:text-blue-400">O- can donate to anyone</p>
+            <p className="text-blue-700 dark:text-blue-400">O+ can donate to all positive types</p>
           </div>
           <div>
-            <h4 className="font-medium text-blue-800 mb-2">Universal Recipients</h4>
-            <p className="text-blue-700">AB+ can receive from anyone</p>
-            <p className="text-blue-700">AB- can receive from all negative types</p>
+            <h4 className="font-medium text-blue-800 dark:text-blue-300 mb-2">Universal Recipients</h4>
+            <p className="text-blue-700 dark:text-blue-400">AB+ can receive from anyone</p>
+            <p className="text-blue-700 dark:text-blue-400">AB- can receive from all negative types</p>
           </div>
           <div>
-            <h4 className="font-medium text-blue-800 mb-2">Type A</h4>
-            <p className="text-blue-700">A+ can receive: A+, A-, O+, O-</p>
-            <p className="text-blue-700">A- can receive: A-, O-</p>
+            <h4 className="font-medium text-blue-800 dark:text-blue-300 mb-2">Type A</h4>
+            <p className="text-blue-700 dark:text-blue-400">A+ can receive: A+, A-, O+, O-</p>
+            <p className="text-blue-700 dark:text-blue-400">A- can receive: A-, O-</p>
           </div>
           <div>
-            <h4 className="font-medium text-blue-800 mb-2">Type B</h4>
-            <p className="text-blue-700">B+ can receive: B+, B-, O+, O-</p>
-            <p className="text-blue-700">B- can receive: B-, O-</p>
+            <h4 className="font-medium text-blue-800 dark:text-blue-300 mb-2">Type B</h4>
+            <p className="text-blue-700 dark:text-blue-400">B+ can receive: B+, B-, O+, O-</p>
+            <p className="text-blue-700 dark:text-blue-400">B- can receive: B-, O-</p>
           </div>
         </div>
       </motion.div>

@@ -117,7 +117,7 @@ const MedicineLibrary: React.FC = () => {
                   transition={{ delay: index * 0.05 }}
                   onClick={() => handleMedicineSelect(medicine)}
                   className={`p-4 border-b border-gray-100 dark:border-gray-700 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors ${
-                    selectedMedicine?.name === medicine.NAME ? 'bg-blue-50 border-blue-200' : ''
+                    selectedMedicine?.name === medicine.NAME ? 'bg-blue-50 dark:bg-blue-900/30 border-blue-200 dark:border-blue-800' : ''
                   }`}
                 >
                   <div className="flex items-center space-x-3">
@@ -182,7 +182,7 @@ const MedicineLibrary: React.FC = () => {
             <div className="p-6">
               <div className="flex items-start justify-between mb-6">
                 <div className="flex-1">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">{selectedMedicine.name}</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">{selectedMedicine.name}</h2>
                   {selectedMedicine.link && (
                     <a
                       href={selectedMedicine.link}
@@ -198,85 +198,85 @@ const MedicineLibrary: React.FC = () => {
 
               <div className="space-y-6">
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-3 flex items-center">
+                  <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-3 flex items-center">
                     <Info className="h-5 w-5 mr-2 text-blue-500" />
                     Introduction
                   </h3>
-                  <p className="text-gray-700 leading-relaxed bg-blue-50 p-4 rounded-lg">
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
                     {selectedMedicine.introduction}
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-3 flex items-center">
+                  <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-3 flex items-center">
                     <Pill className="h-5 w-5 mr-2 text-green-500" />
                     Uses
                   </h3>
-                  <div className="bg-green-50 p-4 rounded-lg">
+                  <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
                     {parseStringToArray(selectedMedicine.uses).map((use, index) => (
                       <div key={index} className="flex items-start mb-2 last:mb-0">
                         <span className="w-2 h-2 bg-green-400 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                        <span className="text-gray-700">{use}</span>
+                        <span className="text-gray-700 dark:text-gray-300">{use}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-3 flex items-center">
+                  <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-3 flex items-center">
                     <BookOpen className="h-5 w-5 mr-2 text-purple-500" />
                     Benefits
                   </h3>
-                  <div className="bg-purple-50 p-4 rounded-lg">
-                    <p className="text-gray-700 leading-relaxed">{selectedMedicine.benefits}</p>
+                  <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg">
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{selectedMedicine.benefits}</p>
                   </div>
                 </div>
 
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-3 flex items-center">
+                  <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-3 flex items-center">
                     <AlertTriangle className="h-5 w-5 mr-2 text-orange-500" />
                     Side Effects
                   </h3>
-                  <div className="bg-orange-50 p-4 rounded-lg">
+                  <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg">
                     {parseStringToArray(selectedMedicine.side_effect).map((effect, index) => (
                       <div key={index} className="flex items-start mb-2 last:mb-0">
                         <span className="w-2 h-2 bg-orange-400 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                        <span className="text-gray-700">{effect}</span>
+                        <span className="text-gray-700 dark:text-gray-300">{effect}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-3 flex items-center">
+                  <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-3 flex items-center">
                     <Info className="h-5 w-5 mr-2 text-blue-500" />
                     How to Use
                   </h3>
-                  <div className="bg-blue-50 p-4 rounded-lg">
-                    <p className="text-gray-700 leading-relaxed">{selectedMedicine.how_to_use}</p>
+                  <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{selectedMedicine.how_to_use}</p>
                   </div>
                 </div>
 
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-3 flex items-center">
+                  <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-3 flex items-center">
                     <BookOpen className="h-5 w-5 mr-2 text-indigo-500" />
                     How it Works
                   </h3>
-                  <div className="bg-indigo-50 p-4 rounded-lg">
-                    <p className="text-gray-700 leading-relaxed">{selectedMedicine.how_works}</p>
+                  <div className="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg">
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{selectedMedicine.how_works}</p>
                   </div>
                 </div>
 
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-3 flex items-center">
+                  <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-3 flex items-center">
                     <AlertTriangle className="h-5 w-5 mr-2 text-yellow-500" />
                     Quick Tips
                   </h3>
-                  <div className="bg-yellow-50 p-4 rounded-lg">
+                  <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg">
                     {parseStringToArray(selectedMedicine.quick_tips).map((tip, index) => (
                       <div key={index} className="flex items-start mb-2 last:mb-0">
                         <span className="w-2 h-2 bg-yellow-400 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                        <span className="text-gray-700">{tip}</span>
+                        <span className="text-gray-700 dark:text-gray-300">{tip}</span>
                       </div>
                     ))}
                   </div>
@@ -286,8 +286,8 @@ const MedicineLibrary: React.FC = () => {
           ) : (
             <div className="p-6 text-center">
               <BookOpen className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">Select a Medicine</h3>
-              <p className="text-gray-600">Search and select a medicine to view comprehensive information</p>
+              <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">Select a Medicine</h3>
+              <p className="text-gray-600 dark:text-gray-300">Search and select a medicine to view comprehensive information</p>
             </div>
           )}
         </motion.div>
