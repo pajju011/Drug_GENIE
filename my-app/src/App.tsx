@@ -17,7 +17,6 @@ const DrugChecker = lazy(() => import('./pages/DrugChecker'));
 const MedicineLibrary = lazy(() => import('./pages/MedicineLibrary'));
 const Reminders = lazy(() => import('./pages/Reminders'));
 const BloodBank = lazy(() => import('./pages/BloodBank'));
-const SymptomChecker = lazy(() => import('./pages/SymptomChecker'));
 const Profile = lazy(() => import('./pages/Profile'));
 const HelpCenter = lazy(() => import('./pages/HelpCenter'));
 const ContactUs = lazy(() => import('./pages/ContactUs'));
@@ -91,7 +90,6 @@ function App() {
             <Route path="library" element={<MedicineLibrary />} />
             <Route path="reminders" element={<Reminders />} />
             <Route path="blood-bank" element={<BloodBank />} />
-            <Route path="symptom-checker" element={<SymptomChecker />} />
             <Route path="profile" element={<Profile />} />
             <Route path="help" element={<HelpCenter />} />
             <Route path="contact" element={<ContactUs />} />

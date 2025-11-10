@@ -41,11 +41,12 @@ export const getUserActivities = expressAsyncHandler(async (req: AuthRequest, re
   res.json(activities);
 });
 
-// Get recent activities for all users (for dashboard)
+// Get recent activities for current user (for dashboard)
 export const getRecentActivities = expressAsyncHandler(async (req: AuthRequest, res: Response) => {
+  const userId = (req.user as any)?._id?.toString();
   const { limit = 10 } = req.query;
 
-  const activities = await ActivityLog.find()
+  const activities = await ActivityLog.find({ userId })
     .sort({ timestamp: -1 })
     .limit(Number(limit))
     .select('-__v');

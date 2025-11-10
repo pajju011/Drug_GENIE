@@ -29,7 +29,6 @@ const GlobalSearch: React.FC<GlobalSearchProps> = ({ isOpen, onClose }) => {
     { title: 'Medicine Library', description: 'Browse 14,690+ medicines', path: '/library', category: 'Pages' },
     { title: 'Reminders', description: 'Manage medication reminders', path: '/reminders', category: 'Pages' },
     { title: 'Blood Bank', description: 'Find or donate blood', path: '/blood-bank', category: 'Pages' },
-    { title: 'Symptom Checker', description: 'Check your symptoms', path: '/symptom-checker', category: 'Pages' },
     { title: 'Profile Settings', description: 'Manage your account', path: '/profile', category: 'Settings' },
     { title: 'Help Center', description: 'Get help and support', path: '/help', category: 'Support' },
     { title: 'Contact Us', description: 'Get in touch with support', path: '/contact', category: 'Support' },

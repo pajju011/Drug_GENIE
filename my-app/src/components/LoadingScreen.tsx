@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart } from 'lucide-react';
+import { HeartHandshake } from 'lucide-react';
 
 interface LoadingScreenProps {
   onLoadingComplete: () => void;
@@ -59,7 +59,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
                 className="absolute inset-0 bg-white/20 rounded-full blur-2xl"
               />
               <div className="relative p-8 bg-white/20 backdrop-blur-sm rounded-3xl">
-                <Heart className="h-24 w-24 text-white" />
+                <HeartHandshake className="h-24 w-24 text-white" />
               </div>
             </div>
           </motion.div>

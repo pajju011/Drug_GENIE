@@ -20,6 +20,7 @@ import {
 import { getCurrentUser, logoutUser, updateUser } from '../utils/storage';
 import { authAPI } from '../services/api';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const Profile: React.FC = () => {
   const currentUser = getCurrentUser();
@@ -77,23 +78,39 @@ const Profile: React.FC = () => {
   };
 
   const handlePasswordChange = async () => {
-    if (passwordData.newPassword !== passwordData.confirmPassword) {
-      console.error('Passwords do not match');
+    // Validation
+    if (!passwordData.oldPassword) {
+      toast.error('Please enter your current password');
+      return;
+    }
+    if (!passwordData.newPassword) {
+      toast.error('Please enter a new password');
       return;
     }
     if (passwordData.newPassword.length < 6) {
-      console.error('Password must be at least 6 characters');
+      toast.error('Password must be at least 6 characters');
+      return;
+    }
+    if (passwordData.newPassword !== passwordData.confirmPassword) {
+      toast.error('Passwords do not match');
       return;
     }
     
     try {
-      await authAPI.changePassword({
+      const response = await authAPI.changePassword({
         oldPassword: passwordData.oldPassword,
         newPassword: passwordData.newPassword,
       });
+      
+      // Clear form
       setPasswordData({ oldPassword: '', newPassword: '', confirmPassword: '' });
+      
+      // Show success message
+      toast.success(response.message || 'Password changed successfully!');
     } catch (error: any) {
-      console.error('Failed to change password:', error);
+      console.error('Password change error:', error);
+      const errorMessage = error.response?.data?.message || error.message || 'Failed to change password';
+      toast.error(errorMessage);
     }
   };
 

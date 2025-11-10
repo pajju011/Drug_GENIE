@@ -51,8 +51,13 @@ const AIAssistant: React.FC = () => {
         const historyResponse = await aiAPI.getHistory(100); // Get last 100 messages
         
         // Convert backend consultation logs to chat messages
+        // Backend returns newest first (createdAt: -1), so we reverse to show oldest first
         const loadedMessages: ChatMessage[] = [];
-        historyResponse.consultations.forEach((consultation: any) => {
+        
+        // Reverse the consultations array to get oldest first
+        const orderedConsultations = [...historyResponse.consultations].reverse();
+        
+        orderedConsultations.forEach((consultation: any) => {
           // Add user question
           loadedMessages.push({
             id: consultation._id + '-q',
@@ -69,8 +74,7 @@ const AIAssistant: React.FC = () => {
           });
         });
         
-        // Reverse to show oldest first
-        setMessages(loadedMessages.reverse());
+        setMessages(loadedMessages);
       } catch (error) {
         console.error('Error loading chat history:', error);
         // Start with empty messages if loading fails

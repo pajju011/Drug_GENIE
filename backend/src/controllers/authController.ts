@@ -146,32 +146,52 @@ const updateUserProfile = expressAsyncHandler(async (req: AuthRequest, res: Resp
 
 // Change user password
 const changeUserPassword = expressAsyncHandler(async (req: AuthRequest, res: Response) => {
-  const user = req.user;
+  try {
+    const userId = (req.user as any)?._id;
+    
+    if (!userId) {
+      res.status(401);
+      throw new Error('User not authenticated');
+    }
 
-  if (!user) {
-    res.status(404);
-    throw new Error('User not found');
+    // Fetch user from database
+    const user = await User.findById(userId);
+    
+    if (!user) {
+      res.status(404);
+      throw new Error('User not found');
+    }
+
+    const { oldPassword, newPassword } = req.body;
+
+    // Validate inputs
+    if (!oldPassword) {
+      res.status(400);
+      throw new Error('Current password is required');
+    }
+
+    if (!newPassword || newPassword.length < 6) {
+      res.status(400);
+      throw new Error('New password must be at least 6 characters long');
+    }
+
+    // Check if old password matches
+    const isPasswordMatch = await user.matchPassword(oldPassword);
+    
+    if (!isPasswordMatch) {
+      res.status(401);
+      throw new Error('Current password is incorrect');
+    }
+
+    // Update password
+    user.password = newPassword;
+    await user.save();
+
+    res.json({ message: 'Password changed successfully' });
+  } catch (error: any) {
+    console.error('Password change error:', error);
+    throw error;
   }
-
-  const { oldPassword, newPassword } = req.body;
-
-  // Validate new password
-  if (!newPassword || newPassword.length < 6) {
-    res.status(400);
-    throw new Error('New password must be at least 6 characters long');
-  }
-
-  // Check if old password matches
-  if (!(await user.matchPassword(oldPassword))) {
-    res.status(401);
-    throw new Error('Current password is incorrect');
-  }
-
-  // Update password
-  user.password = newPassword;
-  await user.save();
-
-  res.json({ message: 'Password changed successfully' });
 });
 
 // Delete user account

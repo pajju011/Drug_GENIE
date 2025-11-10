@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
-  Heart,
+  HeartHandshake,
   Users,
   Clock,
   TrendingUp,
@@ -189,7 +189,7 @@ const Dashboard: React.FC = () => {
             </div>
             <div className="hidden md:block">
               <div className="p-4 bg-white/20 backdrop-blur-sm rounded-2xl">
-                <Heart className="h-12 w-12 text-white" />
+                <HeartHandshake className="h-12 w-12 text-white" />
               </div>
             </div>
           </div>
@@ -284,7 +284,7 @@ const Dashboard: React.FC = () => {
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-bold text-gray-900 dark:text-gray-100">Health Score</h3>
             <div className="p-2 bg-green-500 rounded-lg">
-              <Heart className="h-5 w-5 text-white" />
+              <HeartHandshake className="h-5 w-5 text-white" />
             </div>
           </div>
 
