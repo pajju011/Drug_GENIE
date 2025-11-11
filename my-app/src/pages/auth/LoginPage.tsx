@@ -291,7 +291,7 @@ const LoginPage: React.FC = () => {
                 Don't have an account?{" "}
                 <Link
                   to="/signup"
-                  className="text-blue-600 hover:text-blue-500 font-semibold"
+                  className="text-blue-600 hover:text-blue-500 font-semibold"  
                 >
                   Create Account
                 </Link>
