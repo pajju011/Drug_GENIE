@@ -133,7 +133,7 @@ const Navbar: React.FC<NavbarProps> = ({ onToggleSidebar, isSidebarOpen }) => {
                 {currentUser?.name || 'Guest User'}
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400">
-                {currentUser?.bloodGroup || 'Unknown'} • {currentUser?.age || 'N/A'} years
+                {currentUser?.bloodGroup && currentUser.bloodGroup !== 'Unknown' ? currentUser.bloodGroup : 'Not set'} • {currentUser?.age && currentUser.age > 0 ? `${currentUser.age} years` : 'Not set'}
               </p>
             </div>
             

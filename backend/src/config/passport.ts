@@ -15,11 +15,23 @@ passport.use(
         let user = await User.findOne({ email: profile.emails?.[0].value });
 
         if (user) {
-          // User exists, return the user
+          // User exists, only update photo if user doesn't have a custom uploaded photo
+          // (Custom photos are base64 strings, Google photos are URLs)
+          const googlePhoto = profile.photos?.[0].value;
+          const hasCustomPhoto = user.profilePhoto && user.profilePhoto.startsWith('data:image');
+          
+          // Only update if Google has a real photo and user doesn't have custom photo
+          if (googlePhoto && !googlePhoto.includes('default-user') && !hasCustomPhoto) {
+            user.profilePhoto = googlePhoto;
+            await user.save();
+          }
           return done(null, user);
         }
 
         // Create new user if doesn't exist
+        const googlePhoto = profile.photos?.[0].value;
+        const hasRealGooglePhoto = googlePhoto && !googlePhoto.includes('default-user');
+        
         user = await User.create({
           name: profile.displayName,
           email: profile.emails?.[0].value,
@@ -27,7 +39,8 @@ passport.use(
           age: 0, // Default value, user can update later
           bloodGroup: 'Unknown', // Default value
           gender: 'Other', // Default value
-          profilePhoto: profile.photos?.[0].value,
+          // Use Google photo if available, otherwise leave undefined (frontend will show default icon)
+          profilePhoto: hasRealGooglePhoto ? googlePhoto : undefined,
         });
 
         return done(null, user);

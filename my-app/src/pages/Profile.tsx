@@ -275,15 +275,15 @@ const Profile: React.FC = () => {
             <div className="flex items-center space-x-4 mt-2">
               <span className="flex items-center space-x-1 text-sm">
                 <Droplets className="h-4 w-4" />
-                <span>{currentUser?.bloodGroup}</span>
+                <span>{currentUser?.bloodGroup && currentUser.bloodGroup !== 'Unknown' ? currentUser.bloodGroup : 'Not set'}</span>
               </span>
               <span className="flex items-center space-x-1 text-sm">
                 <Calendar className="h-4 w-4" />
-                <span>{currentUser?.age} years</span>
+                <span>{currentUser?.age && currentUser.age > 0 ? `${currentUser.age} years` : 'Not set'}</span>
               </span>
               <span className="flex items-center space-x-1 text-sm">
                 <Users className="h-4 w-4" />
-                <span>{currentUser?.gender}</span>
+                <span>{currentUser?.gender && currentUser.gender !== 'Other' ? currentUser.gender : 'Not set'}</span>
               </span>
             </div>
           </div>

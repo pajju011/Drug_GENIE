@@ -103,6 +103,8 @@ const getUserProfile = expressAsyncHandler(async (req: AuthRequest, res: Respons
       age: user.age,
       bloodGroup: user.bloodGroup,
       gender: user.gender,
+      phone: user.phone,
+      profilePhoto: user.profilePhoto,
       createdAt: user.createdAt,
     });
   } else {
