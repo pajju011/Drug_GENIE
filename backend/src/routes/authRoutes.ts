@@ -1,5 +1,8 @@
 import express from 'express';
+<<<<<<< HEAD
 import passport from '../config/passport';
+=======
+>>>>>>> 5fbcd6f2c893500ea09a1b1848b2939fce707c2f
 import { 
   registerUser, 
   loginUser, 
@@ -7,8 +10,12 @@ import {
   updateUserProfile, 
   changeUserPassword,
   deleteAccount,
+<<<<<<< HEAD
   uploadProfilePhoto,
   googleAuthCallback
+=======
+  uploadProfilePhoto
+>>>>>>> 5fbcd6f2c893500ea09a1b1848b2939fce707c2f
 } from '../controllers/authController';
 import { protect } from '../middleware/authMiddleware';
 
@@ -22,6 +29,7 @@ router.put('/change-password', protect, changeUserPassword);
 router.delete('/delete-account', protect, deleteAccount);
 router.post('/upload-photo', protect, uploadProfilePhoto);
 
+<<<<<<< HEAD
 // Google OAuth routes
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 router.get('/google/callback', 
@@ -29,4 +37,6 @@ router.get('/google/callback',
   googleAuthCallback
 );
 
+=======
+>>>>>>> 5fbcd6f2c893500ea09a1b1848b2939fce707c2f
 export default router;

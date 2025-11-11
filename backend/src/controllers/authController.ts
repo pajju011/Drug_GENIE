@@ -277,6 +277,7 @@ const uploadProfilePhoto = expressAsyncHandler(async (req: AuthRequest, res: Res
   });
 });
 
+<<<<<<< HEAD
 // Google OAuth callback handler
 const googleAuthCallback = expressAsyncHandler(async (req: Request, res: Response) => {
   const user = req.user as any;
@@ -301,6 +302,8 @@ const googleAuthCallback = expressAsyncHandler(async (req: Request, res: Respons
   }
 });
 
+=======
+>>>>>>> 5fbcd6f2c893500ea09a1b1848b2939fce707c2f
 export { 
   registerUser, 
   loginUser, 
@@ -308,6 +311,10 @@ export {
   updateUserProfile, 
   changeUserPassword,
   deleteAccount,
+<<<<<<< HEAD
   uploadProfilePhoto,
   googleAuthCallback
+=======
+  uploadProfilePhoto
+>>>>>>> 5fbcd6f2c893500ea09a1b1848b2939fce707c2f
 };
