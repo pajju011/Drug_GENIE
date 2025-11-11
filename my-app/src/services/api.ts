@@ -86,7 +86,7 @@ export const authAPI = {
   },
 
   changePassword: async (passwordData: {
-    oldPassword: string;
+    oldPassword?: string;
     newPassword: string;
   }): Promise<{ message: string }> => {
     return apiRequest('/api/auth/change-password', {

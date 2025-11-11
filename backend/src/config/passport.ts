@@ -15,7 +15,15 @@ passport.use(
         let user = await User.findOne({ email: profile.emails?.[0].value });
 
         if (user) {
-          // User exists, only update photo if user doesn't have a custom uploaded photo
+          // User exists, update googleId if not already set (for existing users)
+          let needsSave = false;
+          
+          if (!user.googleId) {
+            user.googleId = profile.id;
+            needsSave = true;
+          }
+          
+          // Update photo if user doesn't have a custom uploaded photo
           // (Custom photos are base64 strings, Google photos are URLs)
           const googlePhoto = profile.photos?.[0].value;
           const hasCustomPhoto = user.profilePhoto && user.profilePhoto.startsWith('data:image');
@@ -23,8 +31,13 @@ passport.use(
           // Only update if Google has a real photo and user doesn't have custom photo
           if (googlePhoto && !googlePhoto.includes('default-user') && !hasCustomPhoto) {
             user.profilePhoto = googlePhoto;
+            needsSave = true;
+          }
+          
+          if (needsSave) {
             await user.save();
           }
+          
           return done(null, user);
         }
 
@@ -41,6 +54,7 @@ passport.use(
           gender: 'Other', // Default value
           // Use Google photo if available, otherwise leave undefined (frontend will show default icon)
           profilePhoto: hasRealGooglePhoto ? googlePhoto : undefined,
+          googleId: profile.id, // Save Google ID to identify OAuth users
         });
 
         return done(null, user);

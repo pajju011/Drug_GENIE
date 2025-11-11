@@ -105,6 +105,7 @@ const getUserProfile = expressAsyncHandler(async (req: AuthRequest, res: Respons
       gender: user.gender,
       phone: user.phone,
       profilePhoto: user.profilePhoto,
+      googleId: user.googleId,
       createdAt: user.createdAt,
     });
   } else {
@@ -166,28 +167,47 @@ const changeUserPassword = expressAsyncHandler(async (req: AuthRequest, res: Res
 
     const { oldPassword, newPassword } = req.body;
 
+    // Check if user signed up with Google OAuth (has googleId)
+    const isGoogleUser = !!user.googleId;
+    
     // Validate inputs
-    if (!oldPassword) {
+    if (!isGoogleUser && !oldPassword) {
       res.status(400);
       throw new Error('Current password is required');
     }
 
+    // Validate new password strength
     if (!newPassword || newPassword.length < 6) {
       res.status(400);
       throw new Error('New password must be at least 6 characters long');
     }
 
-    // Check if old password matches
-    const isPasswordMatch = await user.matchPassword(oldPassword);
-    
-    if (!isPasswordMatch) {
-      res.status(401);
-      throw new Error('Current password is incorrect');
+    if (!/[A-Z]/.test(newPassword)) {
+      res.status(400);
+      throw new Error('Password must contain at least one uppercase letter');
     }
 
-    // Update password
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(newPassword)) {
+      res.status(400);
+      throw new Error('Password must contain at least one special character');
+    }
+
+    // For non-Google users, verify old password
+    if (!isGoogleUser) {
+      const isPasswordMatch = await user.matchPassword(oldPassword);
+      
+      if (!isPasswordMatch) {
+        res.status(401);
+        throw new Error('Current password is incorrect');
+      }
+    }
+
+    // Update password (works for both Google and regular users)
+    console.log('Setting new password for user:', user.email);
+    console.log('Is Google user:', isGoogleUser);
     user.password = newPassword;
     await user.save();
+    console.log('Password updated successfully for:', user.email);
 
     res.json({ message: 'Password changed successfully' });
   } catch (error: any) {

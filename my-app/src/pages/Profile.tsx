@@ -78,8 +78,11 @@ const Profile: React.FC = () => {
   };
 
   const handlePasswordChange = async () => {
+    // Check if user is a Google user (has googleId)
+    const isGoogleUser = !!currentUser?.googleId;
+    
     // Validation
-    if (!passwordData.oldPassword) {
+    if (!isGoogleUser && !passwordData.oldPassword) {
       toast.error('Please enter your current password');
       return;
     }
@@ -98,7 +101,7 @@ const Profile: React.FC = () => {
     
     try {
       const response = await authAPI.changePassword({
-        oldPassword: passwordData.oldPassword,
+        oldPassword: isGoogleUser ? undefined : passwordData.oldPassword,
         newPassword: passwordData.newPassword,
       });
       
@@ -464,30 +467,42 @@ const Profile: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
               className="space-y-6"
             >
-              <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100">Change Password</h2>
+              <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                {currentUser?.googleId ? 'Set Password' : 'Change Password'}
+              </h2>
+
+              {currentUser?.googleId && (
+                <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4">
+                  <p className="text-sm text-blue-800 dark:text-blue-200">
+                    You signed up with Google. Set a password to also login with email/password.
+                  </p>
+                </div>
+              )}
 
               <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    Current Password
-                  </label>
-                  <div className="relative">
-                    <Lock className="absolute left-3 top-3 h-5 w-5 text-gray-400 dark:text-gray-500" />
-                    <input
-                      type={showOldPassword ? 'text' : 'password'}
-                      value={passwordData.oldPassword}
-                      onChange={(e) => setPasswordData({ ...passwordData, oldPassword: e.target.value })}
-                      className="w-full pl-10 pr-12 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
-                      placeholder="Enter current password"
-                    />
-                    <button
-                      onClick={() => setShowOldPassword(!showOldPassword)}
-                      className="absolute right-3 top-3 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-400"
-                    >
-                      {showOldPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
-                    </button>
+                {!currentUser?.googleId && (
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                      Current Password
+                    </label>
+                    <div className="relative">
+                      <Lock className="absolute left-3 top-3 h-5 w-5 text-gray-400 dark:text-gray-500" />
+                      <input
+                        type={showOldPassword ? 'text' : 'password'}
+                        value={passwordData.oldPassword}
+                        onChange={(e) => setPasswordData({ ...passwordData, oldPassword: e.target.value })}
+                        className="w-full pl-10 pr-12 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                        placeholder="Enter current password"
+                      />
+                      <button
+                        onClick={() => setShowOldPassword(!showOldPassword)}
+                        className="absolute right-3 top-3 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-400"
+                      >
+                        {showOldPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                      </button>
+                    </div>
                   </div>
-                </div>
+                )}
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
@@ -509,6 +524,9 @@ const Profile: React.FC = () => {
                       {showNewPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                     </button>
                   </div>
+                  <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                    Password must be at least 6 characters with 1 uppercase letter and 1 special character
+                  </p>
                 </div>
 
                 <div>

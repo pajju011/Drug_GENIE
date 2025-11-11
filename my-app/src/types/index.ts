@@ -7,6 +7,7 @@ export interface User {
   gender: string;
   phone?: string;
   profilePhoto?: string;
+  googleId?: string;
   createdAt: Date;
 }
 
