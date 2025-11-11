@@ -12,10 +12,7 @@ const Dashboard = lazy(() => import('./pages/Dashboard'));
 const LoginPage = lazy(() => import('./pages/auth/LoginPage'));
 const SignupPage = lazy(() => import('./pages/auth/SignupPage'));
 const ForgotPassword = lazy(() => import('./pages/auth/ForgotPassword'));
-<<<<<<< HEAD
 const GoogleCallback = lazy(() => import('./pages/auth/GoogleCallback'));
-=======
->>>>>>> 5fbcd6f2c893500ea09a1b1848b2939fce707c2f
 const AIAssistant = lazy(() => import('./pages/AIAssistant'));
 const DrugChecker = lazy(() => import('./pages/DrugChecker'));
 const MedicineLibrary = lazy(() => import('./pages/MedicineLibrary'));
@@ -77,10 +74,7 @@ function App() {
               <ForgotPassword />
             </PublicRoute>
           } />
-<<<<<<< HEAD
           <Route path="/auth/google/callback" element={<GoogleCallback />} />
-=======
->>>>>>> 5fbcd6f2c893500ea09a1b1848b2939fce707c2f
           
           {/* Legal Pages - Accessible to everyone */}
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
