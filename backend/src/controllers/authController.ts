@@ -284,18 +284,8 @@ const googleAuthCallback = expressAsyncHandler(async (req: Request, res: Respons
   if (user) {
     const token = generateToken(user._id.toString());
     
-    // Redirect to frontend with token
-    res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/auth/google/callback?token=${token}&user=${encodeURIComponent(JSON.stringify({
-      id: user._id,
-      name: user.name,
-      email: user.email,
-      age: user.age,
-      bloodGroup: user.bloodGroup,
-      gender: user.gender,
-      phone: user.phone,
-      profilePhoto: user.profilePhoto,
-      createdAt: user.createdAt,
-    }))}`);
+    // Redirect to frontend with only token (frontend will fetch user data)
+    res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/auth/google/callback?token=${token}`);
   } else {
     res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/login?error=authentication_failed`);
   }

@@ -2,41 +2,52 @@ import React, { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { authAPI, setToken } from '../../services/api';
 
 const GoogleCallback: React.FC = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = searchParams.get('token');
-    const userStr = searchParams.get('user');
-    const error = searchParams.get('error');
+    const handleCallback = async () => {
+      const token = searchParams.get('token');
+      const error = searchParams.get('error');
 
-    if (error) {
-      toast.error('Google authentication failed. Please try again.');
-      navigate('/login');  
-      return;
-    }
+      if (error) {
+        toast.error('Google authentication failed. Please try again.');
+        navigate('/login');  
+        return;
+      }
 
-    if (token && userStr) {
-      try {
-        const user = JSON.parse(decodeURIComponent(userStr));
-        
-        // Store token and user data
-        localStorage.setItem('token', token);
-        localStorage.setItem('user', JSON.stringify(user));
-        
-        toast.success('Successfully signed in with Google!');
-        navigate('/');
-      } catch (error) {
-        console.error('Error parsing user data:', error);
+      if (token) {
+        try {
+          // Store token first
+          localStorage.setItem('token', token);
+          setToken(token);
+          
+          // Fetch user profile using the token
+          const response = await authAPI.getProfile();
+          
+          // Store user data
+          sessionStorage.setItem('currentUser', JSON.stringify(response));
+          
+          toast.success('Successfully signed in with Google!');
+          
+          // Force page reload to ensure authentication state is updated
+          window.location.href = '/';
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+          toast.error('Authentication failed. Please try again.');
+          localStorage.removeItem('token');
+          navigate('/login');
+        }
+      } else {
         toast.error('Authentication failed. Please try again.');
         navigate('/login');
       }
-    } else {
-      toast.error('Authentication failed. Please try again.');
-      navigate('/login');
-    }
+    };
+
+    handleCallback();
   }, [searchParams, navigate]);
 
   return (
