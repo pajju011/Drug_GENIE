@@ -14,7 +14,7 @@ const GoogleCallback: React.FC = () => {
 
     if (error) {
       toast.error('Google authentication failed. Please try again.');
-      navigate('/login');
+      navigate('/login');  
       return;
     }
 
