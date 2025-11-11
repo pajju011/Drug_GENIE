@@ -277,6 +277,30 @@ const uploadProfilePhoto = expressAsyncHandler(async (req: AuthRequest, res: Res
   });
 });
 
+// Google OAuth callback handler
+const googleAuthCallback = expressAsyncHandler(async (req: Request, res: Response) => {
+  const user = req.user as any;
+  
+  if (user) {
+    const token = generateToken(user._id.toString());
+    
+    // Redirect to frontend with token
+    res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/auth/google/callback?token=${token}&user=${encodeURIComponent(JSON.stringify({
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      age: user.age,
+      bloodGroup: user.bloodGroup,
+      gender: user.gender,
+      phone: user.phone,
+      profilePhoto: user.profilePhoto,
+      createdAt: user.createdAt,
+    }))}`);
+  } else {
+    res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/login?error=authentication_failed`);
+  }
+});
+
 export { 
   registerUser, 
   loginUser, 
@@ -284,5 +308,6 @@ export {
   updateUserProfile, 
   changeUserPassword,
   deleteAccount,
-  uploadProfilePhoto
+  uploadProfilePhoto,
+  googleAuthCallback
 };
