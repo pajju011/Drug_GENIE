@@ -88,7 +88,7 @@ const LoginPage: React.FC = () => {
 
             <p className="text-xl text-blue-100 mb-12 leading-relaxed">
               Advanced AI-powered healthcare management with medicine tracking,
-              symptom analysis, and personalized health insights.
+              drug interaction checking, and personalized health insights.
             </p>
 
             <div className="space-y-6">
@@ -207,7 +207,7 @@ const LoginPage: React.FC = () => {
                 </div>
               </motion.div>
 
-              <div className="flex items-center justify-between">
+              <div className="flex items-center">
                 <label className="flex items-center">
                   <input
                     type="checkbox"
@@ -217,12 +217,6 @@ const LoginPage: React.FC = () => {
                     Remember me
                   </span>
                 </label>
-                <Link
-                  to="/forgot-password"
-                  className="text-sm text-blue-600 hover:text-blue-500 font-medium"
-                >
-                  Forgot password?
-                </Link>
               </div>
 
               <motion.button

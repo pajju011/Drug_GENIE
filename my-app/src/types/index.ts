@@ -52,15 +52,6 @@ export interface BloodRequest {
   status: 'active' | 'fulfilled' | 'expired' | 'cancelled';
 }
 
-export interface Symptom {
-  id: string;
-  name: string;
-  category: string;
-  severity: 'mild' | 'moderate' | 'severe';
-  commonCauses: string[];
-  recommendations: string[];
-}
-
 export interface ChatMessage {
   id: string;
   type: 'user' | 'ai';

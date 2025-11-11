@@ -11,7 +11,6 @@ import { Skeleton } from './components/ui/skeleton';
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const LoginPage = lazy(() => import('./pages/auth/LoginPage'));
 const SignupPage = lazy(() => import('./pages/auth/SignupPage'));
-const ForgotPassword = lazy(() => import('./pages/auth/ForgotPassword'));
 const GoogleCallback = lazy(() => import('./pages/auth/GoogleCallback'));
 const AIAssistant = lazy(() => import('./pages/AIAssistant'));
 const DrugChecker = lazy(() => import('./pages/DrugChecker'));
@@ -67,11 +66,6 @@ function App() {
           <Route path="/signup" element={
             <PublicRoute>
               <SignupPage />
-            </PublicRoute>
-          } />
-          <Route path="/forgot-password" element={
-            <PublicRoute>
-              <ForgotPassword />
             </PublicRoute>
           } />
           <Route path="/auth/google/callback" element={<GoogleCallback />} />
