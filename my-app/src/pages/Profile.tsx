@@ -31,7 +31,6 @@ const Profile: React.FC = () => {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [show2FAModal, setShow2FAModal] = useState(false);
   const [showSessionsModal, setShowSessionsModal] = useState(false);
-  const [showRetentionModal, setShowRetentionModal] = useState(false);
   const [profilePhoto, setProfilePhoto] = useState<string | null>(currentUser?.profilePhoto || null);
 
   const [profileData, setProfileData] = useState({
@@ -676,20 +675,6 @@ const Profile: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="p-4 bg-gray-50 dark:bg-gray-700 rounded-xl">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-medium text-gray-900 dark:text-gray-100">Data Retention</p>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">How long we keep your data</p>
-                    </div>
-                    <button 
-                      onClick={() => setShowRetentionModal(true)}
-                      className="text-blue-600 dark:text-blue-400 font-medium hover:text-blue-700 dark:hover:text-blue-500"
-                    >
-                      Settings
-                    </button>
-                  </div>
-                </div>
               </div>
 
               <div className="pt-6 border-t border-gray-200 dark:border-gray-600">
@@ -855,92 +840,6 @@ const Profile: React.FC = () => {
             >
               Revoke All Other Sessions
             </button>
-          </motion.div>
-        </div>
-      )}
-
-      {/* Data Retention Settings Modal */}
-      {showRetentionModal && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-lg w-full shadow-2xl"
-          >
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">Data Retention Settings</h2>
-              <p className="text-gray-600 dark:text-gray-400">Choose how long we keep your data</p>
-            </div>
-
-            <div className="space-y-4 mb-6">
-              <div className="p-4 bg-blue-50 dark:bg-blue-900/30 border-2 border-blue-200 dark:border-blue-400 rounded-xl">
-                <label className="flex items-start space-x-3 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="retention"
-                    defaultChecked
-                    className="mt-1"
-                  />
-                  <div>
-                    <p className="font-semibold text-gray-900 dark:text-gray-100">Keep Forever</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">All your data is stored indefinitely</p>
-                  </div>
-                </label>
-              </div>
-
-              <div className="p-4 bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-xl">
-                <label className="flex items-start space-x-3 cursor-pointer">
-                  <input type="radio" name="retention" className="mt-1" />
-                  <div>
-                    <p className="font-semibold text-gray-900 dark:text-gray-100">1 Year Retention</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">Data older than 1 year is automatically deleted</p>
-                  </div>
-                </label>
-              </div>
-
-              <div className="p-4 bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-xl">
-                <label className="flex items-start space-x-3 cursor-pointer">
-                  <input type="radio" name="retention" className="mt-1" />
-                  <div>
-                    <p className="font-semibold text-gray-900 dark:text-gray-100">6 Months Retention</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">Data older than 6 months is automatically deleted</p>
-                  </div>
-                </label>
-              </div>
-
-              <div className="p-4 bg-gray-50 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-xl">
-                <label className="flex items-start space-x-3 cursor-pointer">
-                  <input type="radio" name="retention" className="mt-1" />
-                  <div>
-                    <p className="font-semibold text-gray-900 dark:text-gray-100">3 Months Retention</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">Data older than 3 months is automatically deleted</p>
-                  </div>
-                </label>
-              </div>
-            </div>
-
-            <div className="p-4 bg-yellow-50 dark:bg-yellow-900/30 border-2 border-yellow-200 dark:border-yellow-400 rounded-xl mb-6">
-              <p className="text-sm text-yellow-800 dark:text-yellow-100">
-                <strong>Note:</strong> Medical records and prescription data will always be retained for legal compliance.
-              </p>
-            </div>
-
-            <div className="flex space-x-3">
-              <button
-                onClick={() => {
-                  setShowRetentionModal(false);
-                }}
-                className="flex-1 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
-              >
-                Save Settings
-              </button>
-              <button
-                onClick={() => setShowRetentionModal(false)}
-                className="px-6 py-3 border-2 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-100 rounded-xl font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-all"
-              >
-                Cancel
-              </button>
-            </div>
           </motion.div>
         </div>
       )}

@@ -203,11 +203,8 @@ const changeUserPassword = expressAsyncHandler(async (req: AuthRequest, res: Res
     }
 
     // Update password (works for both Google and regular users)
-    console.log('Setting new password for user:', user.email);
-    console.log('Is Google user:', isGoogleUser);
     user.password = newPassword;
     await user.save();
-    console.log('Password updated successfully for:', user.email);
 
     res.json({ message: 'Password changed successfully' });
   } catch (error: any) {
