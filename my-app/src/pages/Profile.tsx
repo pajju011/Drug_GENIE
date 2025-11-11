@@ -127,7 +127,7 @@ const Profile: React.FC = () => {
       // Wait a moment for user to see the success message
       setTimeout(() => {
         logoutUser();
-        navigate('/signup');
+        navigate('/login');
       }, 1500);
     } catch (error: any) {
       toast.error(error.response?.data?.message || 'Failed to delete account. Please check your password.');
