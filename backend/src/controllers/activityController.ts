@@ -5,7 +5,7 @@ import ActivityLog from '../models/activityLogModel';
 import mongoose from 'mongoose';
 
 // Helper function to log activity
-export const logActivity = async (
+export const logActivity = async ( 
   userId: string,
   userName: string,
   activityType: string,
