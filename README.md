@@ -161,7 +161,7 @@ Open a **NEW terminal window** (keep backend running) and run:
 # Go to frontend folder
 cd my-app
 
-# Install all required packages
+# Install all required packages          
 npm install
 
 # Start the website
