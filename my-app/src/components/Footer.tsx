@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
                 <Heart className="w-6 h-6 text-white" />
               </div>
               <span className="text-xl font-bold">Drug GENIE</span>
-            </div>
+            </div>      
             <p className="text-gray-300 text-sm leading-relaxed">
               Your trusted healthcare companion providing medication management, 
               drug interaction checking, and blood donation services.
