@@ -45,7 +45,6 @@ node_modules/.vite/
 database connection attempt-1 
 
 # Deployment files
-vercel.json
 netlify.toml
 .vercel/
 .netlify/

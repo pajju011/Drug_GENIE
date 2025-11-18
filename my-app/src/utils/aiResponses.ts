@@ -47,5 +47,5 @@ export const getAIResponse = (userMessage: string): string => {
     }
   }
   
-  return "I understand you're looking for health information. While I can provide general guidance, it's important to consult with a healthcare professional for personalized medical advice. You can use our other features like the Medicine Library, Drug Interaction Checker, or Symptom Checker for more specific information. Is there a particular health topic you'd like to know more about?";
+  return "I understand you're looking for health information. While I can provide general guidance, it's important to consult with a healthcare professional for personalized medical advice. You can use our other features like the Medicine Library or Drug Interaction Checker for more specific information. Is there a particular health topic you'd like to know more about?";
 };

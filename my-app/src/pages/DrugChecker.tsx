@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Plus, X, AlertTriangle, CheckCircle, AlertCircle, Loader2, Search } from 'lucide-react';
+import { Shield, Plus, X, AlertTriangle, CheckCircle, Loader2, Search } from 'lucide-react';
 import { checkDrugInteractions, getSeverityColor, DrugInteraction, getMedicineSuggestions } from '../utils/drugInteractions';
 import { Skeleton } from '../components/ui/skeleton';
 import { logUserActivity, ActivityTypes } from '../services/activityLogger';
@@ -380,23 +380,6 @@ const DrugChecker: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Disclaimer */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="bg-yellow-50 border border-yellow-200 rounded-lg p-4"
-      >
-        <div className="flex items-start space-x-3">
-          <AlertCircle className="h-5 w-5 text-yellow-600 mt-0.5" />
-          <div>
-            <h3 className="font-medium text-yellow-800">Important Disclaimer</h3>
-            <p className="text-sm text-yellow-700 mt-1">
-              This tool provides general information about drug interactions and should not replace professional medical advice. 
-              Always consult with your healthcare provider or pharmacist before starting, stopping, or changing medications.
-            </p>
-          </div>
-        </div>
-      </motion.div>
     </div>
   );
 };

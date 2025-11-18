@@ -2,6 +2,11 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import path from "path";
+
+// Load .env file FIRST before any other imports that use environment variables
+dotenv.config({ path: path.join(process.cwd(), '.env') });
+
+import passport from './config/passport';
 import connectDB from "./config/db";
 import authRoutes from "./routes/authRoutes";
 import reminderRoutes from "./routes/reminderRoutes";
@@ -14,8 +19,6 @@ import healthScoreRoutes from './routes/healthScoreRoutes';
 import activityRoutes from './routes/activityRoutes';
 import { notFound, errorHandler } from "./middleware/errorMiddleware";
 
-// Load .env file from the backend root directory
-dotenv.config({ path: path.join(process.cwd(), '.env') });
 connectDB();
 
 const app = express();
@@ -48,6 +51,9 @@ app.use(cors({
 }));
 app.use(express.json({ limit: '10mb' })); // Increase limit for profile photo uploads
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
+
+// Initialize Passport
+app.use(passport.initialize());
 
 // Root endpoint
 app.get("/", (req, res) => {

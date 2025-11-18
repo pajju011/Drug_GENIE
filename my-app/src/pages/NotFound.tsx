@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
-import { Home, Search, ArrowLeft, Heart, AlertCircle } from 'lucide-react';
+import { Home, Search, ArrowLeft, HeartHandshake, AlertCircle } from 'lucide-react';
 
 const NotFound: React.FC = () => {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const NotFound: React.FC = () => {
           className="flex justify-center mb-8"
         >
           <div className="p-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-3xl">
-            <Heart className="h-16 w-16 text-white" />
+            <HeartHandshake className="h-16 w-16 text-white" />
           </div>
         </motion.div>
 

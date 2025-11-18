@@ -6,10 +6,10 @@ const PrivacyPolicy: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 py-8 transition-colors duration-200">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-8 transition-colors duration-200">
           <div className="flex items-center mb-4">
             <button
               onClick={() => {
@@ -26,17 +26,17 @@ const PrivacyPolicy: React.FC = () => {
               Back
             </button>
             <div className="flex items-center space-x-4">
-              <h1 className="text-3xl font-bold text-gray-900">Privacy Policy</h1>
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Privacy Policy</h1>
             </div>
           </div>
-          <p className="text-gray-600">Last updated: {new Date().toLocaleDateString()}</p>
+          <p className="text-gray-600 dark:text-gray-300">Last updated: {new Date().toLocaleDateString()}</p>
         </div>
 
         {/* Content */}
-        <div className="bg-white rounded-lg shadow-lg p-8 space-y-8">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 space-y-8 transition-colors duration-200">
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">1. Introduction</h2>
-            <p className="text-gray-700 leading-relaxed">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">1. Introduction</h2>
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
               Welcome to Drug GENIE ("we," "our," or "us"). This Privacy Policy explains how we collect, 
               use, disclose, and safeguard your information when you use our healthcare application and 
               related services. Please read this privacy policy carefully. If you do not agree with the 
@@ -45,19 +45,19 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">2. Information We Collect</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">2. Information We Collect</h2>
             <div className="space-y-4">
               <div>
-                <h3 className="text-lg font-medium text-gray-800 mb-2">Personal Information</h3>
-                <ul className="list-disc list-inside text-gray-700 space-y-1">
+                <h3 className="text-lg font-medium text-gray-800 dark:text-gray-200 mb-2">Personal Information</h3>
+                <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
                   <li>Name, email address, and contact information</li>
                   <li>Account credentials and authentication data</li>
                   <li>Profile information and preferences</li>
                 </ul>
               </div>
               <div>
-                <h3 className="text-lg font-medium text-gray-800 mb-2">Health Information</h3>
-                <ul className="list-disc list-inside text-gray-700 space-y-1">
+                <h3 className="text-lg font-medium text-gray-800 dark:text-gray-200 mb-2">Health Information</h3>
+                <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
                   <li>Medication reminders and schedules</li>
                   <li>Blood type and donation preferences</li>
                   <li>Health-related queries and interactions</li>
@@ -65,8 +65,8 @@ const PrivacyPolicy: React.FC = () => {
                 </ul>
               </div>
               <div>
-                <h3 className="text-lg font-medium text-gray-800 mb-2">Usage Information</h3>
-                <ul className="list-disc list-inside text-gray-700 space-y-1">
+                <h3 className="text-lg font-medium text-gray-800 dark:text-gray-200 mb-2">Usage Information</h3>
+                <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
                   <li>App usage patterns and feature interactions</li>
                   <li>Device information and technical data</li>
                   <li>Log files and error reports</li>
@@ -76,8 +76,8 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">3. How We Use Your Information</h2>
-            <ul className="list-disc list-inside text-gray-700 space-y-2">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">3. How We Use Your Information</h2>
+            <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-2">
               <li>Provide and maintain our healthcare services</li>
               <li>Send medication and appointment reminders</li>
               <li>Facilitate blood donation connections</li>
@@ -90,12 +90,12 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">4. Information Sharing and Disclosure</h2>
-            <p className="text-gray-700 leading-relaxed mb-4">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">4. Information Sharing and Disclosure</h2>
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
               We do not sell, trade, or otherwise transfer your personal information to third parties 
               without your consent, except in the following circumstances:
             </p>
-            <ul className="list-disc list-inside text-gray-700 space-y-2">
+            <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-2">
               <li>With your explicit consent</li>
               <li>To comply with legal obligations or court orders</li>
               <li>To protect our rights, property, or safety</li>
@@ -106,8 +106,8 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">5. Data Security</h2>
-            <p className="text-gray-700 leading-relaxed">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">5. Data Security</h2>
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
               We implement appropriate technical and organizational security measures to protect your 
               personal information against unauthorized access, alteration, disclosure, or destruction. 
               This includes encryption, secure server infrastructure, and regular security audits. 
@@ -116,8 +116,8 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">6. Data Retention</h2>
-            <p className="text-gray-700 leading-relaxed">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">6. Data Retention</h2>
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
               We retain your personal information only for as long as necessary to fulfill the purposes 
               outlined in this Privacy Policy, unless a longer retention period is required or permitted 
               by law. Health information may be retained longer for medical continuity purposes.
@@ -125,9 +125,9 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">7. Your Rights</h2>
-            <p className="text-gray-700 leading-relaxed mb-4">You have the right to:</p>
-            <ul className="list-disc list-inside text-gray-700 space-y-2">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">7. Your Rights</h2>
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">You have the right to:</p>
+            <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-2">
               <li>Access your personal information</li>
               <li>Correct inaccurate or incomplete data</li>
               <li>Delete your personal information</li>
@@ -139,8 +139,8 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">8. Children's Privacy</h2>
-            <p className="text-gray-700 leading-relaxed">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">8. Children's Privacy</h2>
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
               Our service is not intended for children under 13 years of age. We do not knowingly 
               collect personal information from children under 13. If you are a parent or guardian 
               and believe your child has provided us with personal information, please contact us.
@@ -148,8 +148,8 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">9. International Data Transfers</h2>
-            <p className="text-gray-700 leading-relaxed">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">9. International Data Transfers</h2>
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
               Your information may be transferred to and processed in countries other than your own. 
               We ensure appropriate safeguards are in place to protect your personal information in 
               accordance with this Privacy Policy.
@@ -157,8 +157,8 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">10. Changes to This Privacy Policy</h2>
-            <p className="text-gray-700 leading-relaxed">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">10. Changes to This Privacy Policy</h2>
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
               We may update this Privacy Policy from time to time. We will notify you of any changes 
               by posting the new Privacy Policy on this page and updating the "Last updated" date. 
               You are advised to review this Privacy Policy periodically for any changes.
@@ -166,20 +166,20 @@ const PrivacyPolicy: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">11. Contact Us</h2>
-            <p className="text-gray-700 leading-relaxed mb-4">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">11. Contact Us</h2>
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
               If you have any questions about this Privacy Policy, please contact us:
             </p>
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-gray-700"><strong>Email:</strong> privacy@drugenie.com</p>
-              <p className="text-gray-700"><strong>Address:</strong> Drug GENIE Privacy Team</p>
-              <p className="text-gray-700"><strong>Phone:</strong> +1 (555) 123-4567</p>
+            <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+              <p className="text-gray-900 dark:text-gray-100"><strong>Email:</strong> privacy@drugenie.com</p>
+              <p className="text-gray-900 dark:text-gray-100"><strong>Address:</strong> Drug GENIE Privacy Team</p>
+              <p className="text-gray-900 dark:text-gray-100"><strong>Phone:</strong> +1 (555) 123-4567</p>
             </div>
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">12. Medical Disclaimer</h2>
-            <p className="text-gray-700 leading-relaxed">
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-4">12. Medical Disclaimer</h2>
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
               Drug GENIE is not a substitute for professional medical advice, diagnosis, or treatment. 
               Always seek the advice of your physician or other qualified health provider with any 
               questions you may have regarding a medical condition. Never disregard professional 

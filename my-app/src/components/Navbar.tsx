@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Bell, User, Heart, LogOut, Menu, X, Moon, Sun } from 'lucide-react';
+import { Bell, User, HeartHandshake, LogOut, Menu, X, Moon, Sun } from 'lucide-react';
 import { getCurrentUser, logoutUser } from '../utils/storage';
 import { useNavigate } from 'react-router-dom';
 import { notificationService } from '../services/notificationService';
@@ -79,7 +79,7 @@ const Navbar: React.FC<NavbarProps> = ({ onToggleSidebar, isSidebarOpen }) => {
             title="Go to Dashboard"
           >
             <div className="p-2 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl">
-              <Heart className="h-6 w-6 text-white" />
+              <HeartHandshake className="h-6 w-6 text-white" />
             </div>
             <div>
               <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
@@ -133,7 +133,7 @@ const Navbar: React.FC<NavbarProps> = ({ onToggleSidebar, isSidebarOpen }) => {
                 {currentUser?.name || 'Guest User'}
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400">
-                {currentUser?.bloodGroup || 'Unknown'} • {currentUser?.age || 'N/A'} years
+                {currentUser?.bloodGroup && currentUser.bloodGroup !== 'Unknown' ? currentUser.bloodGroup : 'Not set'} • {currentUser?.age && currentUser.age > 0 ? `${currentUser.age} years` : 'Not set'}
               </p>
             </div>
             

@@ -47,7 +47,6 @@ export const ActivityTypes = {
   MEDICINE_SEARCH: 'medicine_search',
   MEDICATION_LOG: 'medication_log',
   BLOOD_REQUEST: 'blood_request',
-  SYMPTOM_CHECK: 'symptom_check',
   HEALTH_SCORE: 'health_score',
   REMINDER: 'reminder',
   PROFILE_UPDATE: 'profile_update',

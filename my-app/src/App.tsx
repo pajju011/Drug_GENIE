@@ -11,13 +11,12 @@ import { Skeleton } from './components/ui/skeleton';
 const Dashboard = lazy(() => import('./pages/Dashboard'));
 const LoginPage = lazy(() => import('./pages/auth/LoginPage'));
 const SignupPage = lazy(() => import('./pages/auth/SignupPage'));
-const ForgotPassword = lazy(() => import('./pages/auth/ForgotPassword'));
+const GoogleCallback = lazy(() => import('./pages/auth/GoogleCallback'));
 const AIAssistant = lazy(() => import('./pages/AIAssistant'));
 const DrugChecker = lazy(() => import('./pages/DrugChecker'));
 const MedicineLibrary = lazy(() => import('./pages/MedicineLibrary'));
 const Reminders = lazy(() => import('./pages/Reminders'));
 const BloodBank = lazy(() => import('./pages/BloodBank'));
-const SymptomChecker = lazy(() => import('./pages/SymptomChecker'));
 const Profile = lazy(() => import('./pages/Profile'));
 const HelpCenter = lazy(() => import('./pages/HelpCenter'));
 const ContactUs = lazy(() => import('./pages/ContactUs'));
@@ -69,11 +68,7 @@ function App() {
               <SignupPage />
             </PublicRoute>
           } />
-          <Route path="/forgot-password" element={
-            <PublicRoute>
-              <ForgotPassword />
-            </PublicRoute>
-          } />
+          <Route path="/auth/google/callback" element={<GoogleCallback />} />
           
           {/* Legal Pages - Accessible to everyone */}
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
@@ -91,7 +86,6 @@ function App() {
             <Route path="library" element={<MedicineLibrary />} />
             <Route path="reminders" element={<Reminders />} />
             <Route path="blood-bank" element={<BloodBank />} />
-            <Route path="symptom-checker" element={<SymptomChecker />} />
             <Route path="profile" element={<Profile />} />
             <Route path="help" element={<HelpCenter />} />
             <Route path="contact" element={<ContactUs />} />

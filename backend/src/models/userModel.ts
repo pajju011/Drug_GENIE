@@ -11,6 +11,7 @@ export interface IUser extends Document {
   gender: string;
   phone?: string;
   profilePhoto?: string;
+  googleId?: string; // Google OAuth ID
   createdAt: Date;
   updatedAt: Date;
   matchPassword(enteredPassword: string): Promise<boolean>;
@@ -28,6 +29,7 @@ const userSchema = new mongoose.Schema<IUser, IUserModel>({
   gender: { type: String, required: true },
   phone: { type: String, required: false },
   profilePhoto: { type: String, required: false },
+  googleId: { type: String, required: false },
 }, { timestamps: true });
 
 // Middleware to hash password before saving a user

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Heart, Shield, FileText, Mail, Phone, MapPin, Twitter, Facebook, Linkedin } from 'lucide-react';
+import { HeartHandshake, Twitter, Facebook, Linkedin } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -16,7 +15,7 @@ const Footer: React.FC = () => {
                 <Heart className="w-6 h-6 text-white" />
               </div>
               <span className="text-xl font-bold">Drug GENIE</span>
-            </div>      
+            </div>
             <p className="text-gray-300 text-sm leading-relaxed">
               Your trusted healthcare companion providing medication management, 
               drug interaction checking, and blood donation services.

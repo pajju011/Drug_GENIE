@@ -27,5 +27,5 @@ database connection attempt-1
 # Deployment files
 vercel.json
 netlify.toml
-.vercel/
+.vercel/ 
 .netlify/

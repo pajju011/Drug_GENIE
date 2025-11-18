@@ -7,7 +7,7 @@ interface KeyboardNavigationOptions {
   onArrowDown?: () => void;
   onArrowLeft?: () => void;
   onArrowRight?: () => void;
-  onTab?: () => void;
+  onTab?: () => void;     
   enabled?: boolean;
 }
 

@@ -103,6 +103,9 @@ const getUserProfile = expressAsyncHandler(async (req: AuthRequest, res: Respons
       age: user.age,
       bloodGroup: user.bloodGroup,
       gender: user.gender,
+      phone: user.phone,
+      profilePhoto: user.profilePhoto,
+      googleId: user.googleId,
       createdAt: user.createdAt,
     });
   } else {
@@ -146,32 +149,68 @@ const updateUserProfile = expressAsyncHandler(async (req: AuthRequest, res: Resp
 
 // Change user password
 const changeUserPassword = expressAsyncHandler(async (req: AuthRequest, res: Response) => {
-  const user = req.user;
+  try {
+    const userId = (req.user as any)?._id;
+    
+    if (!userId) {
+      res.status(401);
+      throw new Error('User not authenticated');
+    }
 
-  if (!user) {
-    res.status(404);
-    throw new Error('User not found');
+    // Fetch user from database
+    const user = await User.findById(userId);
+    
+    if (!user) {
+      res.status(404);
+      throw new Error('User not found');
+    }
+
+    const { oldPassword, newPassword } = req.body;
+
+    // Check if user signed up with Google OAuth (has googleId)
+    const isGoogleUser = !!user.googleId;
+    
+    // Validate inputs
+    if (!isGoogleUser && !oldPassword) {
+      res.status(400);
+      throw new Error('Current password is required');
+    }
+
+    // Validate new password strength
+    if (!newPassword || newPassword.length < 6) {
+      res.status(400);
+      throw new Error('New password must be at least 6 characters long');
+    }
+
+    if (!/[A-Z]/.test(newPassword)) {
+      res.status(400);
+      throw new Error('Password must contain at least one uppercase letter');
+    }
+
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(newPassword)) {
+      res.status(400);
+      throw new Error('Password must contain at least one special character');
+    }
+
+    // For non-Google users, verify old password
+    if (!isGoogleUser) {
+      const isPasswordMatch = await user.matchPassword(oldPassword);
+      
+      if (!isPasswordMatch) {
+        res.status(401);
+        throw new Error('Current password is incorrect');
+      }
+    }
+
+    // Update password (works for both Google and regular users)
+    user.password = newPassword;
+    await user.save();
+
+    res.json({ message: 'Password changed successfully' });
+  } catch (error: any) {
+    console.error('Password change error:', error);
+    throw error;
   }
-
-  const { oldPassword, newPassword } = req.body;
-
-  // Validate new password
-  if (!newPassword || newPassword.length < 6) {
-    res.status(400);
-    throw new Error('New password must be at least 6 characters long');
-  }
-
-  // Check if old password matches
-  if (!(await user.matchPassword(oldPassword))) {
-    res.status(401);
-    throw new Error('Current password is incorrect');
-  }
-
-  // Update password
-  user.password = newPassword;
-  await user.save();
-
-  res.json({ message: 'Password changed successfully' });
 });
 
 // Delete user account
@@ -257,6 +296,20 @@ const uploadProfilePhoto = expressAsyncHandler(async (req: AuthRequest, res: Res
   });
 });
 
+// Google OAuth callback handler
+const googleAuthCallback = expressAsyncHandler(async (req: Request, res: Response) => {
+  const user = req.user as any;
+  
+  if (user) {
+    const token = generateToken(user._id.toString());
+    
+    // Redirect to frontend with only token (frontend will fetch user data)
+    res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/auth/google/callback?token=${token}`);
+  } else {
+    res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/login?error=authentication_failed`);
+  }
+});
+
 export { 
   registerUser, 
   loginUser, 
@@ -264,5 +317,6 @@ export {
   updateUserProfile, 
   changeUserPassword,
   deleteAccount,
-  uploadProfilePhoto
+  uploadProfilePhoto,
+  googleAuthCallback
 };

@@ -7,6 +7,7 @@ export interface User {
   gender: string;
   phone?: string;
   profilePhoto?: string;
+  googleId?: string;
   createdAt: Date;
 }
 
@@ -49,15 +50,6 @@ export interface BloodRequest {
   unitsNeeded: number;
   createdAt: Date;
   status: 'active' | 'fulfilled' | 'expired' | 'cancelled';
-}
-
-export interface Symptom {
-  id: string;
-  name: string;
-  category: string;
-  severity: 'mild' | 'moderate' | 'severe';
-  commonCauses: string[];
-  recommendations: string[];
 }
 
 export interface ChatMessage {
