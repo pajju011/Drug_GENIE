@@ -1,5 +1,4 @@
 import express from 'express';
-import passport from '../config/passport';
 import { 
   registerUser, 
   loginUser, 
@@ -7,8 +6,7 @@ import {
   updateUserProfile, 
   changeUserPassword,
   deleteAccount,
-  uploadProfilePhoto,
-  googleAuthCallback
+  uploadProfilePhoto
 } from '../controllers/authController';
 import { protect } from '../middleware/authMiddleware';
 
@@ -20,13 +18,14 @@ router.get('/profile', protect, getUserProfile);
 router.put('/profile', protect, updateUserProfile);
 router.put('/change-password', protect, changeUserPassword);
 router.delete('/delete-account', protect, deleteAccount);
-router.post('/upload-photo', protect, uploadProfilePhoto);
+// Google OAuth routes will be re-enabled when credentials are provided
+// router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+// router.get('/google/callback', 
+//   passport.authenticate('google', { session: false, failureRedirect: '/login' }),
+//   googleAuthCallback
+// );
 
-// Google OAuth routes
-router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-router.get('/google/callback', 
-  passport.authenticate('google', { session: false, failureRedirect: '/login' }),
-  googleAuthCallback
-);
+// Upload profile photo route (commented out until implemented)
+// router.post('/upload-photo', protect, uploadProfilePhoto);
 
 export default router;

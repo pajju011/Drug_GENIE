@@ -6,6 +6,7 @@ import path from "path";
 // Load .env file FIRST before any other imports that use environment variables
 dotenv.config({ path: path.join(process.cwd(), '.env') });
 
+// Google OAuth
 import passport from './config/passport';
 import connectDB from "./config/db";
 import authRoutes from "./routes/authRoutes";
@@ -32,23 +33,36 @@ const allowedOrigins = [
   process.env.FRONTEND_URL // Allow custom frontend URL from .env
 ].filter(Boolean); // Remove undefined values
 
-app.use(cors({
+// Build CORS options once and reuse for both regular requests and preflight
+const corsOptions: cors.CorsOptions = {
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps, Postman, curl)
     if (!origin) return callback(null, true);
-    
+
+    // In development, allow any origin to avoid local CORS friction
+    if (process.env.NODE_ENV !== 'production') {
+      return callback(null, true);
+    }
+
     // Check if origin is in allowed list or matches Vercel preview pattern
-    if (allowedOrigins.includes(origin) || origin.match(/https:\/\/drug-genie-.*\.vercel\.app$/)) {
+    if (allowedOrigins.includes(origin) || /https:\/\/drug-genie-.*\.vercel\.app$/.test(origin)) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      // Do not throw; simply disallow to avoid 500 responses
+      callback(null, false);
     }
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-  exposedHeaders: ['Content-Range', 'X-Content-Range']
-}));
+  exposedHeaders: ['Content-Range', 'X-Content-Range'],
+  optionsSuccessStatus: 200,
+  preflightContinue: false,
+};
+
+app.use(cors(corsOptions));
+// Explicitly handle preflight requests for all routes
+app.options('*', cors(corsOptions));
 app.use(express.json({ limit: '10mb' })); // Increase limit for profile photo uploads
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 

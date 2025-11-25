@@ -1,5 +1,6 @@
 import React from 'react';
-import { HeartHandshake, Twitter, Facebook, Linkedin } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Heart, Twitter, Facebook, Linkedin, Shield, FileText, Mail, Phone, MapPin } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
