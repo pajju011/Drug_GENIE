@@ -121,4 +121,4 @@ export const getGlobalActivityFeed = expressAsyncHandler(async (req: AuthRequest
     .select('userName activityType action details timestamp metadata');
 
   res.json(activities);                
-});                            
+});                                       
