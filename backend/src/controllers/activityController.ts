@@ -120,6 +120,6 @@ export const getGlobalActivityFeed = expressAsyncHandler(async (req: AuthRequest
     .limit(Number(limit))
     .select('userName activityType action details timestamp metadata');
 
-  res.json(activities);                                                                                              
+  res.json(activities);                                                                                                       
 });                                                                                  
     
