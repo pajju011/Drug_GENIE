@@ -122,4 +122,4 @@ export const getGlobalActivityFeed = expressAsyncHandler(async (req: AuthRequest
 
   res.json(activities);                                                                                                            
 });                                                                                  
-    
+              
